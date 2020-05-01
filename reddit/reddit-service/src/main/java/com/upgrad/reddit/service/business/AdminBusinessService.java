@@ -26,6 +26,8 @@ public class AdminBusinessService {
     @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity deleteUser(String authorization, String uuid) throws AuthorizationFailedException, UserNotFoundException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
+
+
         adminDao.deleteUser(userAuthEntity.getUser());
         return userAuthEntity.getUser();
     }
