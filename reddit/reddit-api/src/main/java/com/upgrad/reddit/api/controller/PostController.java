@@ -32,6 +32,7 @@ public class PostController {
      * @return - ResponseEntity<PostResponse> type object along with Http status CREATED.
      * @throws AuthorizationFailedException
      */
+
     @PostMapping("/createPost")
     public ResponseEntity<PostResponse> createPost(@RequestBody PostResponse postRequest,@RequestHeader String authorization)
         throws AuthorizationFailedException {
@@ -50,7 +51,8 @@ public class PostController {
      * @return - ResponseEntity<List<PostDetailsResponse>> type object along with Http status OK.
      * @throws AuthorizationFailedException
      */
-    @GetMapping("/getAllPosts")
+    
+     @GetMapping("/getAllPosts")
   
           public ResponseEntity<List<PostDetailsResponse>> getAllPosts(@RequestHeader String authorization)
         throws AuthorizationFailedException {
@@ -75,6 +77,7 @@ public class PostController {
      * @throws AuthorizationFailedException
      * @throws InvalidPostException
      */
+
     @PostMapping("/editPostContent")
     public ResponseEntity<PostEditResponse> editPostContent(@RequestBody PostEditRequest postEditRequest,@RequestBody String postId,@RequestHeader String authorization)
         throws AuthorizationFailedException,InvalidPostException {
@@ -96,6 +99,7 @@ public class PostController {
      * @throws AuthorizationFailedException
      * @throws InvalidPostException
      */
+
     @PostMapping("/deletePost")
     public ResponseEntity<PostDeleteResponse> deletePost(@RequestBody String postId,@RequestHeader String authorization)
         throws AuthorizationFailedException,InvalidPostException {

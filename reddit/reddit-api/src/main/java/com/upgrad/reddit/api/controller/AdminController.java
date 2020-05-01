@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
+   
+ @Autowired
     private AdminBusinessService adminBusinessService;
 
     /**
@@ -28,6 +29,7 @@ public class AdminController {
      * @throws AuthorizationFailedException
      * @throws UserNotFoundException
      */
+
     @PostMapping("/deleteUser")
     public ResponseEntity<UserDeleteResponse> deleteUser(@RequestBody String userId, @RequestHeader String authorization) throws AuthorizationFailedException,UserNotFoundException {
             
