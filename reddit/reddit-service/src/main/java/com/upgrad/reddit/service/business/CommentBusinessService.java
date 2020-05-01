@@ -33,11 +33,14 @@ public class CommentBusinessService {
     public CommentEntity createComment(CommentEntity commentEntity, String authorization) throws AuthorizationFailedException {
 
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
+        commentDao.createComment(commentEntity);
+        return commentEntity;
     }
 
     public PostEntity getPostByUuid(String Uuid) throws InvalidPostException {
 
         PostEntity postEntity = commentDao.getPostByUuid(Uuid);
+        return postEntity;
 
     }
 
@@ -48,7 +51,8 @@ public class CommentBusinessService {
     @Transactional(propagation = Propagation.REQUIRED)
     public CommentEntity editCommentContent(CommentEntity commentEntity, String commentId, String authorization) throws AuthorizationFailedException, CommentNotFoundException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
-
+        commentDao.editComment(commentEntity);
+        return commentEntity;
     }
 
     /**
@@ -57,7 +61,9 @@ public class CommentBusinessService {
     @Transactional(propagation = Propagation.REQUIRED)
     public CommentEntity deleteComment(String commentId, String authorization) throws AuthorizationFailedException, CommentNotFoundException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
-
+        CommentEntity commentEntity = commentDao.getCommentByUuid(commentId);
+        commentDao.deleteComment(commentEntity);
+        return commentEntity;
     }
 
     /**
@@ -65,6 +71,7 @@ public class CommentBusinessService {
      */
     public TypedQuery<CommentEntity> getCommentsByPost(String postId, String authorization) throws AuthorizationFailedException, InvalidPostException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
-
+        PostEntity postEntity  = commentDao.getPostByUuid(postId);
+        return commentDao.getCommentsByPost(postEntity);
     }
 }

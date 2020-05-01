@@ -33,6 +33,8 @@ public class PostBusinessService {
     public PostEntity createPost(PostEntity postEntity, String authorization) throws AuthorizationFailedException {
 
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
+        postDao.createPost(postEntity);
+        return  postEntity;
     }
 
     /**
@@ -41,6 +43,8 @@ public class PostBusinessService {
     public TypedQuery<PostEntity> getPosts(String authorization) throws AuthorizationFailedException {
 
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
+        return postDao.getPosts();
+
     }
 
     /**
@@ -49,7 +53,8 @@ public class PostBusinessService {
     @Transactional(propagation = Propagation.REQUIRED)
     public PostEntity editPostContent(PostEntity postEntity, String postId, String authorization) throws AuthorizationFailedException, InvalidPostException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
-
+        postDao.editPost(postEntity);
+        return postEntity;
     }
 
     /**
@@ -58,7 +63,9 @@ public class PostBusinessService {
     @Transactional(propagation = Propagation.REQUIRED)
     public PostEntity deletePost(String postId, String authorization) throws AuthorizationFailedException, InvalidPostException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
-
+        PostEntity postEntity=postDao.getPostByUuid(postId);
+        postDao.deletePost(postEntity);
+        return postEntity;
     }
 
     /**
@@ -66,6 +73,7 @@ public class PostBusinessService {
      */
     public TypedQuery<PostEntity> getPostsByUser(String userId, String authorization) throws AuthorizationFailedException, UserNotFoundException {
         UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
+        PostEntity  postEntity=postDao.getPostByUuid(userId);
+        return postDao.getPostsByUser(userAuthEntity.getUser());
     }
-
 }
