@@ -51,7 +51,8 @@ public class PostController {
      * @throws AuthorizationFailedException
      */
     @GetMapping("/getAllPosts")
-    public ResponseEntity<List<PostDetailsResponse>> getAllPosts(@RequestHeader String authorization)
+  
+          public ResponseEntity<List<PostDetailsResponse>> getAllPosts(@RequestHeader String authorization)
         throws AuthorizationFailedException {
         List<PostEntity> postList = postBusinessService.getPosts(authorization).getResultList();
         List<PostDetailsResponse> postDetailsResponses = new ArrayList<>();
@@ -102,15 +103,7 @@ public class PostController {
         return new ResponseEntity<>(new PostDeleteResponse().id(postId),HttpStatus.OK);
     }
 
-    /**
-     * A controller method to fetch all the posts posted by a specific user.
-     *
-     * @param userId        - The uuid of the user whose posts are to be fetched from the database.
-     * @param authorization - A field in the request header which contains the JWT token.
-     * @return - ResponseEntity<List<PostDetailsResponse>> type object along with Http status OK.
-     * @throws AuthorizationFailedException
-     * @throws UserNotFoundException
-     */
+   
     @GetMapping("/getAllPostsByUser")
     public ResponseEntity<List<PostDetailsResponse>> getAllPostsByUser(@RequestBody String userId,@RequestHeader String authorization)
     throws AuthorizationFailedException,UserNotFoundException
