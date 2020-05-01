@@ -97,7 +97,9 @@ public class CommentController {
         throws AuthorizationFailedException, InvalidPostException {
         List<CommentEntity> commentEntityList = commentBusinessService.getCommentsByPost(postId,authorization).getResultList();
         List<CommentDetailsResponse> responses = new ArrayList<>();
-        for (CommentEntity entity: commentEntityList) {
+       
+
+         for (CommentEntity entity: commentEntityList) {
             responses.add(new CommentDetailsResponse().id(entity.getUuid()).commentContent(entity.getComment()));
         }
 
