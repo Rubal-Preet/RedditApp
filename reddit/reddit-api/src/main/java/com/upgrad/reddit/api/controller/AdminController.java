@@ -30,7 +30,9 @@ public class AdminController {
      */
     @PostMapping("/deleteUser")
     public ResponseEntity<UserDeleteResponse> deleteUser(@RequestBody String userId, @RequestHeader String authorization) throws AuthorizationFailedException,UserNotFoundException {
-            UserEntity userEntity = adminBusinessService.deleteUser(authorization,userId);
+            
+      UserEntity userEntity = adminBusinessService.deleteUser(authorization,userId);
+
             return new ResponseEntity<UserDeleteResponse>(new UserDeleteResponse().id(userId),HttpStatus.OK);
 
     }
