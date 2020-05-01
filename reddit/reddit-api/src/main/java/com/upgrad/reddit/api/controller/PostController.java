@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/post")
-public class PostController {
+public class PostController  {
 
     @Autowired
     private PostBusinessService postBusinessService;
@@ -42,6 +42,7 @@ public class PostController {
 
         PostResponse postResponse = new PostResponse().status(newPostEntity.getContent()).id(newPostEntity.getUuid());
         return new ResponseEntity<PostResponse>(postResponse,HttpStatus.OK);
+    
     }
 
     /**
@@ -88,7 +89,8 @@ public class PostController {
         return new ResponseEntity<>(new PostEditResponse()
                 .id(editPostEntity.getUuid())
                 .status(editPostEntity.getContent()),HttpStatus.OK);
-    }
+    
+     }
 
     /**
      * A controller method to delete the post in the database.
@@ -105,9 +107,9 @@ public class PostController {
         throws AuthorizationFailedException,InvalidPostException {
         PostEntity postEntity=postBusinessService.deletePost(postId,authorization);
         return new ResponseEntity<>(new PostDeleteResponse().id(postId),HttpStatus.OK);
-    }
+    
+     }
 
-   
     @GetMapping("/getAllPostsByUser")
     public ResponseEntity<List<PostDetailsResponse>> getAllPostsByUser(@RequestBody String userId,@RequestHeader String authorization)
     throws AuthorizationFailedException,UserNotFoundException

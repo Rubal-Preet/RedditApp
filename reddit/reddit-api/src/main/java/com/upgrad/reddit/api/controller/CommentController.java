@@ -23,7 +23,6 @@ import java.util.UUID;
 @RequestMapping("/")
 public class CommentController {
 
-
     @Autowired
     private CommentBusinessService commentBusinessService;
 
@@ -37,8 +36,8 @@ public class CommentController {
      * @throws AuthorizationFailedException
      * @throws InvalidPostException
      */
-   
-     @PostMapping("/createComment")
+     
+    @PostMapping("/createComment")
      public ResponseEntity<CommentResponse> createComment(@RequestBody CommentRequest commentRequest, @RequestBody String postId, @RequestHeader String authorization)
      throws  AuthorizationFailedException,InvalidPostException {
         CommentEntity commentEntity = new CommentEntity();
@@ -83,11 +82,11 @@ public class CommentController {
 
     @PostMapping("/deleteComment")
     public  ResponseEntity<CommentDeleteResponse> deleteComment(@RequestBody  String commentId,@RequestHeader  String authorization)
-        throws AuthorizationFailedException,CommentNotFoundException {
+        throws AuthorizationFailedException,CommentNotFoundException 
+    {
         CommentEntity commentEntity = commentBusinessService.deleteComment(commentId,authorization);
         return new ResponseEntity<CommentDeleteResponse>(new CommentDeleteResponse().id(commentId),HttpStatus.OK);
-    
-     }
+    }
 
     /**
      * A controller method to fetch all the comments for a specific post in the database.
