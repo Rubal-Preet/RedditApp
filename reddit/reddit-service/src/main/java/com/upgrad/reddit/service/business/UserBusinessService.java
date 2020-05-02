@@ -36,6 +36,7 @@ public class UserBusinessService {
         return  userEntity;
     }
 
+
     /**
      * The method implements the business logic for signin endpoint.
      */
@@ -44,6 +45,7 @@ public class UserBusinessService {
         UserAuthEntity userAuthEntity = authenticate(username,password);
         return  userAuthEntity;
     }
+
 
     /**
      * The method implements the business logic for signout endpoint.

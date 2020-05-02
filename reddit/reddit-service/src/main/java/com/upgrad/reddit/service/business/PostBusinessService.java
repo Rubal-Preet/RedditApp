@@ -47,6 +47,7 @@ public class PostBusinessService {
 
     }
 
+
     /**
      * The method implements the business logic for editPostContent endpoint.
      */
@@ -60,8 +61,9 @@ public class PostBusinessService {
     /**
      * The method implements the business logic for deletePost endpoint.
      */
+
     @Transactional(propagation = Propagation.REQUIRED)
-   
+
         public PostEntity deletePost(String postId, String authorization) throws AuthorizationFailedException, InvalidPostException {
          UserAuthEntity userAuthEntity = userDao.getUserAuthByAccesstoken(authorization);
            PostEntity postEntity=postDao.getPostByUuid(postId);

@@ -28,6 +28,7 @@ public class CommonController {
      * @throws UserNotFoundException
      * @throws AuthorizationFailedException
      */
+
     @GetMapping("/fetchUserDetails")
     public ResponseEntity<UserDetailsResponse> fetchUserDetails(@RequestBody String userId,@RequestHeader String authorization)
         throws UserNotFoundException,AuthorizationFailedException {
